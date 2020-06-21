@@ -13,7 +13,7 @@ create_mainfest_file(){
     echo "内存大小：${IBM_MEM_SIZE}"
     
     
-    cat >  ${SH_PATH}/IBMYes/v2ray-cloudfoundry/manifest.yml  << EOF
+    cat >  ${SH_PATH}/IBMYes/v2/manifest.yml  << EOF
     applications:
     - path: .
       name: ${IBM_APP_NAME}
@@ -26,18 +26,17 @@ EOF
 
 clone_repo(){
     echo "进行初始化。。。"
-    git clone https://github.com/CCChieh/IBMYes
+    git clone https://github.com/crazyole/IBMYes
     cd IBMYes
-    git submodule update --init --recursive
-    cd v2ray-cloudfoundry/v2ray
+    cd v2/v2ray
     chmod +x *
-    cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
+    cd ${SH_PATH}/IBMYes/v2
     echo "初始化完成。"
 }
 
 install(){
     echo "进行安装。。。"
-    cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
+    cd ${SH_PATH}/IBMYes/v2
     ibmcloud target --cf
     ibmcloud cf install
     ibmcloud cf push
